@@ -22,3 +22,5 @@ datasets/
 
 #Other Files
 ComputerVision/ResNet/param_checker.py
+GenAI\GAN\dataset
+GenAI\GAN\dataset\MNIST
