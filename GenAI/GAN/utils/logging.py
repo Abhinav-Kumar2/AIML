@@ -7,8 +7,8 @@ def setup_writers(log_dir):
 
 def log_images(gen, real, fixed_noise, step, writer_fake, writer_real):
     with torch.no_grad():
-        fake = gen(fixed_noise).cpu()
-        real = real.cpu()
+        fake = gen(fixed_noise)
+        real = real
         img_grid_fake = torchvision.utils.make_grid(fake, normalize=True)
         img_grid_real = torchvision.utils.make_grid(real, normalize=True)
 

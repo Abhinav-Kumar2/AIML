@@ -16,7 +16,6 @@ def train_gan(disc, gen, loader, config, writer_fake, writer_real):
             real = real.to(config["device"])
             batch_size = real.size(0)
 
-            ### Train Discriminator ###
             noise = torch.randn(batch_size, config["z_dim"], 1, 1).to(config["device"])
             fake = gen(noise)
 
@@ -30,7 +29,6 @@ def train_gan(disc, gen, loader, config, writer_fake, writer_real):
             lossD.backward()
             opt_disc.step()
 
-            ### Train Generator ###
             output = disc(fake).view(-1)
             lossG = criterion(output, torch.ones_like(output))
 
@@ -38,7 +36,6 @@ def train_gan(disc, gen, loader, config, writer_fake, writer_real):
             lossG.backward()
             opt_gen.step()
 
-            ### Logging ###
             if batch_idx == 0:
                 print(
                     f"Epoch [{epoch}/{config['num_epochs']}] Batch {batch_idx}/{len(loader)} "
